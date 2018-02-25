@@ -32,12 +32,15 @@ class ServerCallbackI(Murmur.ServerCallback):
         self.server = server
 
     def userConnected(self, user, current=None):
-        message = user.name + ' has connected'
+        message = user.name + ' has connected (Connected: '+ self.__getUsersString() +')'
         sendToDiscord(message)
 
     def userDisconnected(self, user, current=None):
-        message = user.name + ' has disconnected'
+        message = user.name + ' has disconnected (Connected: '+ self.__getUsersString() +')'
         sendToDiscord(message)
+
+    def __getUsersString(self):
+       return ''.join('{} '.format(val.name) for key, val in self.server.getUsers().items())
 
 
 if __name__ == "__main__":
