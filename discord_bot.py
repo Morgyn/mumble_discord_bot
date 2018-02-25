@@ -17,9 +17,6 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s]  %(message)s')
 
 
 def sendToDiscord(message):
-    timezone = pytz.timezone('Europe/Samara')
-    currentTime = datetime.now(timezone)
-    message = currentTime.strftime('%H:%M:%S') + ' ' + message
     data = {'content': message}
     logging.info('Send to Discord: ' + str(data))
     req = requests.post(
